@@ -85,13 +85,13 @@ namespace LibraryWebServer.Controllers
                         from k in pat.DefaultIfEmpty()
                         select new
                         {
-                            isbn = x == null ? null : x.Isbn,
+                            isbn = t == null ? null : t.Isbn,
                             title = t == null ? null : t.Title,
                             author = t == null ? null : t.Author,
-                            serial = y == null ? null : (uint?)y.Serial,
-                            name = k == null ? null : k.Name
+                            serial = x == null ? null : (uint?)x.Serial,
+                            name = k == null ? "" : k.Name
                         };
-            //
+            
             return Json(query.ToArray());
 
         }
