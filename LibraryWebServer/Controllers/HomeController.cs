@@ -85,11 +85,11 @@ namespace LibraryWebServer.Controllers
                         from k in pat.DefaultIfEmpty()
                         select new
                         {
-                            isbn = x.Isbn,
-                            title = t.Title,
-                            author = t.Author,
-                            serial = y.Serial,
-                            name = k.Name
+                            isbn = x == null ? null : x.Isbn,
+                            title = t == null ? null : t.Title,
+                            author = t == null ? null : t.Author,
+                            serial = y == null ? null : (uint?)y.Serial,
+                            name = k == null ? null : k.Name
                         };
 
             return Json(query.ToArray());
@@ -114,9 +114,9 @@ namespace LibraryWebServer.Controllers
                         from y in tit.DefaultIfEmpty()
                         select new
                         {
-                            title = y.Title,
-                            author = y.Author,
-                            serial = c.Serial
+                            title = y == null ? null : y.Title,
+                            author = y == null ? null : y.Author,
+                            serial = c == null ? null : (uint?) c.Serial
                         };
             // TODO: Implement
             return Json(query.ToArray());
